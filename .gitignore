@@ -398,3 +398,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# CUSTOM STUFF AND THANGS
+
+renpy/
+DDLC.exe
+DDLC.sh
+bin/
+lib/
