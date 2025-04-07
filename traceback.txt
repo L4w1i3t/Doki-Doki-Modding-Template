@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 29, in script call
+    call ch0_main                      # Intro/title sequence
+  File "game/script.rpy", line 29, in script call
+    call ch0_main                      # Intro/title sequence
+ScriptError: could not find label 'ch0_main'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 29, in script call
+    call ch0_main                      # Intro/title sequence
+  File "C:\Users\Charles\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 8\renpy-8.1.1-sdk\renpy\ast.py", line 1725, in execute
+    rv = renpy.game.context().call(label, return_site=self.next.name)
+  File "game/script.rpy", line 29, in script call
+    call ch0_main                      # Intro/title sequence
+  File "C:\Users\Charles\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 8\renpy-8.1.1-sdk\renpy\script.py", line 1013, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'ch0_main'.
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.1.1.23060707
+Doki Doki Modding Central Mod Template 0.1.0
+Mon Apr  7 19:46:47 2025
