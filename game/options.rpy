@@ -101,6 +101,7 @@ init python:
     build.archive("images", "all")
     build.archive("audio", "all")
     build.archive("fonts", "all")
+    buid.archive("mod", "all") # Custom archive to differentiate between mod files and vanilla files
 
     # Classify which files go into which archives
     build.classify("game/**.jpg", "images")
@@ -110,12 +111,12 @@ init python:
     build.classify("game/**.rpyc", "scripts")
     build.classify("game/**.txt", "scripts")
     build.classify("game/**.chr", "scripts")
-    build.classify("game/story/**.rpyc", "scripts") # Custom partitioning for mod story files. Not required, but useful for larger mods
-    build.classify("game/story/**.txt", "scripts")
-    build.classify("game/story/**.chr", "scripts")
-    build.classify("game/addons/**.rpyc", "scripts") # Custom partitioning for mod add-on files. Not required, but useful for larger mods
-    build.classify("game/addons/**.txt", "scripts")
-    build.classify("game/addons/**.chr", "scripts")
+    build.classify("game/story/**.rpyc", "mod") # Custom partitioning for mod story files. Not required, but useful for larger mods
+    build.classify("game/story/**.txt", "mod")
+    build.classify("game/story/**.chr", "mod")
+    build.classify("game/addons/**.rpyc", "mod") # Custom partitioning for mod add-on files. Not required, but useful for larger mods
+    build.classify("game/addons/**.txt", "mod")
+    build.classify("game/addons/**.chr", "mod")
     build.classify("game/**.wav", "audio")
     build.classify("game/**.mp3", "audio")
     build.classify("game/**.ogg", "audio")
