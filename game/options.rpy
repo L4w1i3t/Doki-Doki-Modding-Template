@@ -5,7 +5,7 @@ define config.name = "Doki Doki Modding Central Mod Template"
 
 # Shows the name of the title in the bottom right corner of the main menu
 # Set to True for templating purposes, but you can toggle it on or off as you see fit
-define gui.show_name = True
+define gui.show_name = False
 
 # The version of the mod
 define config.version = "0.1.0"
@@ -95,33 +95,31 @@ init python:
 
 init python:
     # Build settings - defines how files are packaged when building your mod
+    # Usually you won't need to change this, but it's here for reference
     
     # Define the archives (packages) that will contain your mod's files
-    build.archive("scripts", "all")
-    build.archive("images", "all")
-    build.archive("audio", "all")
-    build.archive("fonts", "all")
-    buid.archive("mod", "all") # Custom archive to differentiate between mod files and vanilla files
+    # build.archive("scripts", "all")
+    # build.archive("images", "all")
+    # build.archive("audio", "all")
+    # build.archive("fonts", "all")
+    build.archive("mod", "all") # Custom archive to differentiate between mod files and vanilla files
 
     # Classify which files go into which archives
-    build.classify("game/**.jpg", "images")
-    build.classify("game/**.png", "images")
-    build.classify("game/**.webp", "images")
-    build.classify("game/**.gif", "images")
-    build.classify("game/**.rpyc", "scripts")
-    build.classify("game/**.txt", "scripts")
-    build.classify("game/**.chr", "scripts")
-    build.classify("game/story/**.rpyc", "mod") # Custom partitioning for mod story files. Not required, but useful for larger mods
-    build.classify("game/story/**.txt", "mod")
-    build.classify("game/story/**.chr", "mod")
-    build.classify("game/addons/**.rpyc", "mod") # Custom partitioning for mod add-on files. Not required, but useful for larger mods
-    build.classify("game/addons/**.txt", "mod")
-    build.classify("game/addons/**.chr", "mod")
-    build.classify("game/**.wav", "audio")
-    build.classify("game/**.mp3", "audio")
-    build.classify("game/**.ogg", "audio")
-    build.classify("game/**.ttf", "fonts")
-    build.classify("game/**.otf", "fonts")
+    build.classify("game/**.jpg", "mod")
+    build.classify("game/**.png", "mod")
+    build.classify("game/**.webp", "mod")
+    build.classify("game/**.gif", "mod")
+    build.classify("game/**.rpyc", "mod")
+    build.classify("game/**.txt", "mod")
+    build.classify("game/**.chr", "mod")
+    build.classify("game/story/**", "mod") # Custom partitioning for mod story files. Not required, but useful for larger mods
+    build.classify("game/addons/**", "mod") # Custom partitioning for mod add-on files. Not required, but useful for larger mods
+    build.classify("game/mod_assets/**", "mod") # Add all files and subfolders in the mod_assets folder to the mod archive
+    build.classify("game/**.wav", "mod")
+    build.classify("game/**.mp3", "mod")
+    build.classify("game/**.ogg", "mod")
+    build.classify("game/**.ttf", "mod")
+    build.classify("game/**.otf", "mod")
 
     # Files that should be excluded from the build
     build.classify('**~', None)
@@ -137,6 +135,9 @@ init python:
     build.classify('script-regex.txt', None)
     build.classify('/game/10', None)
     build.classify('/game/cache/*.*', None)
+    build.classify('/game/**.rpa', None)      # Exclude all .rpa files
+    build.classify('/game/firstrun', None)  # Exclude the firstrun file
+    build.classify('/game/**.bak', None)
 
     # Documentation files to include
     build.documentation('*.html')
@@ -144,6 +145,8 @@ init python:
 
     # Disables including old Ren'Py themes
     build.include_old_themes = False
+
+    build.package("Mod Export (All Platforms)", "zip", "windows mac linux renpy all")
 
 ##### Commented out as we have no use for this
 # define build.itch_project = "teamsalvato/ddlc"

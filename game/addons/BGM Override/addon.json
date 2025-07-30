@@ -1,0 +1,10 @@
+{
+    "name": "BGM Override Button",
+    "version": "1.0.0",
+    "description": "Adds a button to override the background music with any available track in the game.",
+    "author": "Lawliet",
+    "files": [
+        "index.rpy",
+        "example.rpy"
+    ]
+}

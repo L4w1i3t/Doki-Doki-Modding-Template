@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/addons/BGM Override/index.rpy", line 15, in <module>
+    ("Dreams of Love and Literature", audio.t1),
+AttributeError: 'StoreModule' object has no attribute 't1'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "C:\Users\clmel\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 7-\renpy-6.99.12.4-sdk\renpy\bootstrap.py", line 295, in bootstrap
+    renpy.main.main()
+  File "C:\Users\clmel\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 7-\renpy-6.99.12.4-sdk\renpy\main.py", line 419, in main
+    game.context().run(node)
+  File "C:/Users/clmel/Desktop/Programming/GAMING/ENGINES/RenPy/RenPy 7-/addons/BGM Override/index.rpyc", line 6, in script
+  File "C:\Users\clmel\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 7-\renpy-6.99.12.4-sdk\renpy\ast.py", line 814, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\clmel\Desktop\Programming\GAMING\ENGINES\RenPy\RenPy 7-\renpy-6.99.12.4-sdk\renpy\python.py", line 1719, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "game/addons/BGM Override/index.rpy", line 15, in <module>
+    ("Dreams of Love and Literature", audio.t1),
+AttributeError: 'StoreModule' object has no attribute 't1'
+
+Windows-8-6.2.9200
+Ren'Py 6.99.12.4.2187
+ 

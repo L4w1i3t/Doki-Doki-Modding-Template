@@ -36,7 +36,7 @@ label updateconsole(text="", history=""):
     $ pause(len(text) / 30.0 + 0.5)        # Pause proportional to text length to simulate typing
     hide ctext                             # Hide the text
     show console_text "_" as ctext zorder 100  # Show just the cursor again
-    call updateconsolehistory (history)    # Update the history with new text
+    call updateconsolehistory (history) from _call_updateconsolehistory    # Update the history with new text
     $ pause(0.5)                           # Brief pause before continuing
     return
 
@@ -58,7 +58,7 @@ label updateconsole_old(text="", history=""):
     # Loop to display text character by character
     label updateconsole_loop:
         $ currenttext = text[:textcount]   # Get the current portion of text to display
-        call drawconsole (drawtext=currenttext)  # Draw the current text state
+        call drawconsole (drawtext=currenttext) from _call_drawconsole  # Draw the current text state
         
         # Calculate pause time to maintain consistent typing speed
         $ pause_duration = 0.08 - (datetime.datetime.now() - starttime).microseconds / 1000.0 / 1000.0
@@ -75,7 +75,7 @@ label updateconsole_old(text="", history=""):
     $ pause(0.5)                           # Brief pause when done typing
     hide ctext                             # Hide the text
     show console_text "_" as ctext zorder 100  # Show cursor
-    call updateconsolehistory (history)    # Update history
+    call updateconsolehistory (history) from _call_updateconsolehistory_1    # Update history
     $ pause(0.5)                           # Final pause
     return
 

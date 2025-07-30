@@ -109,7 +109,7 @@ image menu_nav:
     menu_nav_move
 
 image menu_logo:
-    "gui/logo.png"
+    "mod_assets/gui/logo.png"
     subpixel True
     xcenter 240
     ycenter 120
@@ -260,12 +260,22 @@ label splashscreen:
         scene tos
         with Dissolve(1.0)
         pause 1.0
-        "This game is not suitable for children or those who are easily disturbed."
-        "Individuals suffering from anxiety or depression may not have a safe experience playing this game. For content warnings, please visit: http://ddlc.moe/warning.html"
+
+        # ==================================================================================================================================================
+        # CHANGE THIS TO YOUR OWN TERMS OF SERVICE
+        # ==================================================================================================================================================
+
+        "This template is a fan-made production and is not in any way affiliated with Team Salvato or Serenty Forge."
+        "Users of this template are highly encouraged to both complete the original game and understand the IP guidelines set in place for this product."
+        "This template is not intended to be used for commercial purposes, and is only meant to be used as a base for fan works."
+        "Please support the official release on ddlc.moe."
         menu:
-            "By playing Doki Doki Literature Club, you agree that you are at least 13 years of age, and you consent to your exposure of highly disturbing content."
+            "By using this template, you agree to the IP guidelines set forth by Team Salvato, and you have completed DDLC previously."
             "I agree.":
                 pass
+            "I do not agree.":
+                "Then I cannot allow you to use this template."
+                $ renpy.quit()
         $ persistent.first_run = True
         scene tos2
         with Dissolve(1.5)

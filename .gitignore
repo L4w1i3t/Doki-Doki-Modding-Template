@@ -1,0 +1,15 @@
+errors.txt
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+*.bat
+*.exe
+.vscode/
+.idea/
+log.txt
+images.rpa
+fonts.rpa
+scripts.rpa
+audio.rpa

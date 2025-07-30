@@ -162,7 +162,7 @@ image credits_cg10_clearall:
     size (640, 360)
 
 image credits_logo:
-    "gui/logo.png"
+    "mod_assets/gui/logo.png"
     truecenter
     zoom 0.6 alpha 0 subpixel True
     linear 2.0 alpha 1

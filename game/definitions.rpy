@@ -1,11 +1,9 @@
-define persistent.demo = False
-define persistent.steam = ("steamapps" in config.basedir.lower())
-define config.developer = False
+#### Definitions.RPY has been modified to coincide with definitions that are used by DDLC and not necessary for development of a modifcation.
+#### You can change any of these as much as you like without ruining the development process.
+#### It will only break certain actions inside of DDLC while you are changing scripts and debugging.
 
-python early:
-    import singleton
-    me = singleton.SingleInstance()
 
+#Definitions for certain in-game events, such as poem game sounds, functions, .CHR deletion and reintegration, etc.
 init python:
     config.keymap['game_menu'].remove('mouseup_3')
     config.keymap['hide_windows'].append('mouseup_3')
@@ -56,6 +54,7 @@ init python:
         renpy.pause(time)
         _windows_hidden = False
 
+#Definitions for Audio BGM and noises.
 define audio.t1 = "<loop 22.073>bgm/1.ogg"
 define audio.t2 = "<loop 4.499>bgm/2.ogg"
 define audio.t2g = "bgm/2g.ogg"
@@ -95,14 +94,18 @@ define audio.closet_close = "sfx/closet-close.ogg"
 define audio.page_turn = "sfx/pageflip.ogg"
 define audio.fall = "sfx/fall.ogg"
 
+#Definitions for flashing still images, scene transition images.
 image black = "#000000"
 image dark = "#000000e4"
 image darkred = "#110000c8"
 image white = "#ffffff"
+#Definition for Splash.rpy PNG.
 image splash = "bg/splash.png"
+#Definition for End Card at the very end of the game, before the main menu is shown again.
 image end:
     truecenter
     "gui/end.png"
+#Definitions for each Background in the game.
 image bg residential_day = "bg/residential.png"
 image bg class_day = "bg/class.png"
 image bg corridor = "bg/corridor.png"
@@ -129,6 +132,7 @@ image bg notebook = "bg/notebook.png"
 image bg notebook-glitch = "bg/notebook-glitch.png"
 image bg glitch = LiveTile("bg/glitch.jpg")
 
+#Definitions for certain Glitch effects using PNGs in the /game/ assets.
 image glitch_color:
     ytile 3
     zoom 2.5
@@ -207,6 +211,7 @@ image glitch_color2:
         alpha 0.7
         linear 0.45 alpha 0
 
+#Definitions for Sayori's sprite.
 image sayori 1 = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1a = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/a.png")
 image sayori 1b = im.Composite((960, 960), (0, 0), "sayori/1l.png", (0, 0), "sayori/1r.png", (0, 0), "sayori/b.png")
@@ -432,6 +437,7 @@ image sayori glitch:
     pause 0.01666
     repeat
 
+#Definitions for Natsuki's sprite.
 image natsuki 11 = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/1t.png")
 image natsuki 1a = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/a.png")
 image natsuki 1b = im.Composite((960, 960), (0, 0), "natsuki/1l.png", (0, 0), "natsuki/1r.png", (0, 0), "natsuki/b.png")
@@ -852,6 +858,7 @@ image natsuki vomit = "natsuki/vomit.png"
 image n_blackeyes = "images/natsuki/blackeyes.png"
 image n_eye = "images/natsuki/eye.png"
 
+#Definitions for Yuri's sprite.
 image yuri 1 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/1r.png", (0, 0), "yuri/a.png")
 image yuri 2 = im.Composite((960, 960), (0, 0), "yuri/1l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
 image yuri 3 = im.Composite((960, 960), (0, 0), "yuri/2l.png", (0, 0), "yuri/2r.png", (0, 0), "yuri/a.png")
@@ -1148,6 +1155,7 @@ image yuri dragon:
     xoffset 0
     "yuri 3"
 
+#### Definitions for Monika's sprite.
 image monika 1 = im.Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
 image monika 2 = im.Composite((960, 960), (0, 0), "monika/1l.png", (0, 0), "monika/2r.png", (0, 0), "monika/a.png")
 image monika 3 = im.Composite((960, 960), (0, 0), "monika/2l.png", (0, 0), "monika/1r.png", (0, 0), "monika/a.png")
@@ -1275,6 +1283,7 @@ image monika g2:
             pause 0.2
     repeat
 
+#### Definitions of Character and Narrations (the current speaker in the name textbox)
 define narrator = Character(ctc="ctc", ctc_position="fixed")
 define mc = DynamicCharacter('player', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define s = DynamicCharacter('s_name', image='sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
@@ -1283,22 +1292,16 @@ define n = DynamicCharacter('n_name', image='natsuki', what_prefix='"', what_suf
 define y = DynamicCharacter('y_name', image='yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 
-define _dismiss_pause = config.developer
-default persistent.playername = ""
-default player = persistent.playername
-default persistent.playthrough = 0
+#### Defaults, Defines, and Persistents pertaining to the checks found inside of DDLC. ####
 default persistent.yuri_kill = 0
 default persistent.seen_eyes = None
 default persistent.seen_sticker = None
 default persistent.ghost_menu = None
 default persistent.seen_ghost_menu = None
 default seen_eyes_this_chapter = False
-default persistent.anticheat = 0
-default persistent.clear = [False, False, False, False, False, False, False, False, False, False]
 default persistent.special_poems = None
-default persistent.clearall = None
+default persistent.anticheat = 0
 default persistent.menu_bg_m = None
-default persistent.first_load = None
 default persistent.first_poem = None
 default persistent.seen_colors_poem = None
 default persistent.monika_back = None
@@ -1306,7 +1309,6 @@ default in_sayori_kill = None
 default in_yuri_kill = None
 default anticheat = 0
 define config.mouse = None
-default allow_skipping = True
 default basedir = config.basedir
 default chapter = 0
 default currentpos = 0
@@ -1343,5 +1345,3 @@ default ch4_scene = "yuri"
 default ch4_name = "Yuri"
 default sayori_confess = True
 default natsuki_23 = None
-
-# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

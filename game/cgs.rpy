@@ -1,3 +1,6 @@
+### Definitions and ATL of all CGs in DDLC. These are not necessary to keep unless you want to repurpose them.
+
+
 image y_cg2_bg:
     "images/cg/y_cg2_bg1.png"
     6.0
