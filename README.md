@@ -282,12 +282,11 @@ The template includes optimized build settings in `game/options.rpy` under "Mod 
 2. **Audio formats**: Use OGG for music and sound effects. It is the most quality-efficient format for Ren'Py.
 3. **Preload important assets**: Use `image` statements for frequently used sprites
 
-### DDLC Authenticity
+### Miscellaneous
 
-1. **Character consistency**: Keep characters true to their personalities
-2. **Art style**: Match the original game's visual style
-3. **UI consistency**: Use the existing interface elements
-4. **Content warnings**: Include appropriate warnings for mature content
+1. **Use persistent data**: Store player choices or unlocks using `persistent` variables
+   - Example: `persistent.special_unlock = True`
+2. **Content warnings**: Include appropriate warnings for mature content
 
 ### Version Control
 
