@@ -113,3 +113,11 @@ image matsuda 2z1 = im.Composite((960, 960), (0, 0), "demo/matsuda/Poses/2l.png"
 # Character definition for Matsuda
 define ma = DynamicCharacter('ma_name', image='matsuda', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 default ma_name = "Matsuda"
+define mo = DynamicCharacter('mo_name', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", pose="1a")
+default mo_name = "Morgan"
+
+# Audio definitions
+define audio.gr = "demo/bgm/Gregor Samsa - Abutting, Dismantling.ogg"
+
+# Backgrounds
+image bg res_grayscale = "demo/bg/res_grayscale.png"

@@ -3,10 +3,6 @@
 # to override the background music with any available track in the game.
 # To add the button, just call this addon in your story script.
 
-# Thumbnail settings for screenshots
-define config.thumbnail_width = 266
-define config.thumbnail_height = 150
-
 init 1 python:
     # BGM Override variables
     bgm_override_active = False
@@ -59,6 +55,9 @@ init 1 python:
             bgm_override_active = False
             if bgm_original_track:
                 renpy.music.play(bgm_original_track, channel="music", fadeout=1.0, fadein=1.0)
+            else:
+                # If there was no original music, stop the current music to restore silence
+                renpy.music.stop(channel="music", fadeout=1.0)
             bgm_original_track = None
         else:
             # Enable override - store current track

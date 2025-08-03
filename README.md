@@ -8,6 +8,7 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
 - [Configuration](#configuration)
 - [Creating Your Mod](#creating-your-mod)
 - [Asset Management](#asset-management)
+- [Addon Creation and Management](#addon-creation-and-management)
 - [Development Tools](#development-tools)
 - [Building & Distribution](#building--distribution)
 - [Best Practices](#best-practices)
@@ -155,6 +156,53 @@ define audio.my_song = "mod_assets/bgm/my_song.ogg"
 image mychar happy = "mod_assets/images/mychar_happy.png"
 ```
 
+## Addon Creation and Management
+
+This template's selling point is its segregation between vanilla source files, mod asset files, and additional content that can be added via plug-and-play means. This allows you to create addons that can be easily integrated into the template without modifying the core files--just function calls are necessary (*1 whole extra line of code!*) Examples of addons include but are not limited to:
+
+- **UI and menu additions**: Achievement systems, galleries, gender selection, etc.
+- **Phone and social media interfaces**: Text threads, notifications, status updates, etc.
+- **Jukebox and music players**: Custom music players, playlists, etc.
+- **Overrides**: Physics, character behaviors, and other gameplay mechanics that can be toggled on or off.
+- **"Mods within mods"**: Gameplay loops, interactive elements, sub-engines, etc.
+- **Custom Python scripts**: For advanced features or integrations.
+
+### Creating an Addon
+
+You can either create an addon using Ren'Py language, Python, or a combination of both. It will also provide the option of JSON knowledge. The template provides a basic structure for creating addons:
+
+1. **Create a new folder** in `game/addons/` with your addon name (e.g., `game/addons/My Addon/`)
+2. **Add your addon files**:
+   - Create a main script file (something like `index.rpy`)
+   - Add any additional assets in `game/addons/My Addon/assets/` (I know there's a lot of nesting here, but bear with me)
+3. **Create `addon.json`** in your addon folder to define metadata (OPTIONAL but recommended):
+
+```json
+{
+    "name": "My Addon",
+    "version": "1.0.0",
+    "description": "A cool addon for my mod",
+    "author": "Your Name",
+    "dependencies": []
+}
+```
+
+4. **Create your addon in any way you like**
+    - 4.5. **Best Practice: Wrap the entirety of your addon logic in a Ren'Py label** to allow easy integration.
+
+5. **Make a test file or test script** to ensure your addon works as expected. If you followed step 4.5, you can call your addon label from the main script:
+
+```python
+label test_my_addon:
+    # Call your addon label here
+    call my_addon_label
+    return
+```
+
+6. **When you're satisfied, use or share it!** We here at ModCen love to see creativity and what modders can come up with.
+    - If you so desire, you can submit your addon to the ModCen website for preservation and easy access by other modders. Just make sure to follow the submission guidelines.
+        - URL: https://ddmc.site/pages/template/addons.html
+
 ## Development Tools
 
 ### Debug Mode
@@ -209,26 +257,29 @@ Use `runcode.bat` to quickly open the project in VS Code.
 
 ### Build Configuration
 
-The template includes optimized build settings in `game/options.rpy`:
+The template includes optimized build settings in `game/options.rpy` under "Mod Export":
 
 ```python
 # Files are automatically categorized for distribution
 # Mod files go to "mod" archive
-# Excludes source files (.rpy) and development files
+# Excludes source files (.rpy) and other development files
 ```
 
 ## Best Practices
 
 ### Code Organization
 
-1. **Separate story files**: Use multiple `.rpy` files in `game/story/`
-2. **Consistent naming**: Use clear, descriptive names for labels and variables
+1. **Separate story files**: Use multiple `.rpy` files in `game/story/` to keep track of different chapters or sections
+   - Example: `chapter1.rpy`, `chapter2.rpy`, etc.
+2. **Consistent naming**: Use clear, descriptive names for labels and variables. You'll save future you a lot of headaches.
+   - Example: `label chapter1_start` instead of `label c1`
 3. **Comment your code**: Explain complex logic and story branches
 
 ### Performance
 
-1. **Image optimization**: Compress images appropriately
-2. **Audio formats**: Use OGG for music, WAV for short sound effects
+1. **Image optimization**: Compress images appropriately. Generally, PNG is best for sprites and backgrounds, while JPEG is suitable for photos.
+   - Use tools like TinyPNG or ImageOptim to reduce file sizes without losing quality.
+2. **Audio formats**: Use OGG for music and sound effects. It is the most quality-efficient format for Ren'Py.
 3. **Preload important assets**: Use `image` statements for frequently used sprites
 
 ### DDLC Authenticity
@@ -266,13 +317,13 @@ echo "*.rpyb" >> .gitignore
 - Verify image dimensions and format
 
 **Audio not playing**
-- Confirm audio files are in correct format (OGG/WAV)
+- Confirm audio files are in correct format (OGG/WAV, etc.)
 - Check audio definitions in `definitions.rpy`
 - Verify file paths are correct
 
 **Build errors**
-- Disable developer mode before building
-- Check for syntax errors in `.rpy` files
+- Ensure that developer mode is disabled in your build (PLEASE.)
+- Check for syntax errors in `.rpy` files (these are more common than you think)
 - Ensure all referenced files exist
 
 ### Performance Issues
@@ -387,7 +438,7 @@ To decompile `.rpyc` files (compiled Ren'Py scripts), you can use unrpyc by Cens
 
 ## Contributing
 
-We welcome contributions to improve this template!
+This template is open-source and welcomes contributions from the community. Whether you're a seasoned modder or just starting, your input can help improve this template for everyone!
 
 ### How to Contribute
 
