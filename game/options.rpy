@@ -146,6 +146,7 @@ init python:
     build.classify('/traceback.txt', None)
     build.classify('/log.txt', None)
     build.classify('/README.md', None)
+    build.classify('**/.git/**', None)
 
     # Documentation files to include
     build.documentation('*.html')
