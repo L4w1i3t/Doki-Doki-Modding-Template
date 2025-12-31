@@ -2,9 +2,14 @@
 
 A comprehensive modding template for creating Doki Doki Literature Club mods using Ren'Py. This template provides all the necessary files, configurations, and structure to create professional DDLC mods with minimal setup.
 
+## Template Identifier
+
+This template includes a `MODCEN_MARK` file in the root directory to identify it as a DDMCentral Mod Template project. This helps differentiate it from other DDLC modding templates (such as the Weiss template) which may have different structures, conventions, and setup procedures. If you're following a tutorial or seeking support, mentioning that you're using the ModCen template (identifiable by the `MODCEN_MARK` file) will help others provide more accurate assistance.
+
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Mod Installation Guide (For Players)](#mod-installation-guide-for-players)
+- [Quick Start (For Developers)](#quick-start-for-developers)
 - [Configuration](#configuration)
 - [Creating Your Mod](#creating-your-mod)
 - [Asset Management](#asset-management)
@@ -15,7 +20,52 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 
-## Quick Start
+## Mod Installation Guide (For Players)
+
+If you've downloaded a DDLC mod built with this template and want to play it, follow these steps:
+
+### Installation Steps
+
+1. **Download the mod**
+   - Download the mod's `.zip` file from wherever it was distributed
+   - Extract the contents to a folder of your choice
+
+2. **Get a fresh copy of DDLC**
+   - Download a fresh, unmodified copy of Doki Doki Literature Club!
+   - **IMPORTANT**: Do not use a copy that already has mods installed
+
+3. **Transfer required RPA files**
+   - From your fresh DDLC installation, copy these THREE files to the mod's `game` folder:
+     - `audio.rpa`
+     - `fonts.rpa`
+     - `images.rpa`
+   - **DO NOT copy `scripts.rpa`** - The mod already includes all necessary script files!
+
+4. **Launch the mod**
+   - Run the mod's `.exe` file (Windows) or appropriate executable for your platform
+   - Enjoy the mod!
+
+### Important Notes
+
+- **Never include `scripts.rpa`**: Mods built with this template have all script files already included. Adding `scripts.rpa` from vanilla DDLC will cause conflicts and errors.
+- **Use a fresh DDLC copy**: Always start with an unmodified DDLC installation to avoid file conflicts.
+- **Keep RPA files separate**: These files must be transferred by you due to Team Salvato's IP guidelines - mod creators cannot distribute them.
+
+### Troubleshooting Installation
+
+**Mod won't launch or shows errors:**
+- Verify you copied exactly three files: `audio.rpa`, `fonts.rpa`, and `images.rpa`
+- Make sure you did NOT copy `scripts.rpa`
+- Ensure your DDLC copy is fresh and unmodified
+- Check that the files are in the correct `game` folder
+
+**Missing assets or broken features:**
+- Confirm all three RPA files were copied correctly
+- Try re-extracting the mod and starting over
+
+---
+
+## Quick Start (For Developers)
 
 ### Prerequisites
 
@@ -35,7 +85,10 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
      - `images.rpa`
      - `fonts.rpa`
      - `audio.rpa`
-       - Note: These aren't *technically* necessary to operate the template nor have a fully playable mod, but they ARE required to follow the Team Salvato IP guidelines for independent fangame usage (no amount of DRM can change that).
+   - **DO NOT copy `scripts.rpa`** - This file is NOT needed!
+     - Note: These three RPA files aren't *technically* necessary to operate the template nor have a fully playable mod (you'll give yourself a headache reconfiguring everything though), but they ARE required to be separate from the template to follow the Team Salvato IP guidelines for unaffiliated mod usage (no amount of DRM can change that).
+     - `scripts.rpa` is specifically excluded because all script files needed for the engine are already packed in with the template and compiled during build time. That way, users have one less file to deal with and avoid conflicts between vanilla scripts and mod scripts.
+        
 
 2. **Open with Ren'Py Launcher**
    - Launch Ren'Py
@@ -52,7 +105,6 @@ A comprehensive modding template for creating Doki Doki Literature Club mods usi
 
 4. **Test your mod**
    - Click "Launch Project" in Ren'Py Launcher
-   - Or run `runcode.bat` to open in VS Code
 
 ## Configuration
 
@@ -64,6 +116,12 @@ define config.name = "Your Mod Name Here"           # Display name
 define config.version = "1.0.0"                     # Version number
 define build.name = "YourModName"                    # Build filename
 define config.save_directory = "YourModName"        # Save folder name
+
+# Example from the template (found in game/options.rpy):
+define config.name = "Doki Doki Modding Central Mod Template"
+define config.version = "0.9.0"
+define build.name = "DDMCentral-Template"
+define config.save_directory = "DDMCentral-Template"
 ```
 
 ### Character Definitions
@@ -80,8 +138,8 @@ The template includes pre-configured character definitions in `game/definitions.
 Audio files are defined in `game/definitions.rpy`. The template includes:
 - Background music tracks (`audio.t1`, `audio.t2`, etc.)
 - Sound effects (`audio.page_turn`, `audio.fall`, etc.)
-- Main menu music setting in `options.rpy` and `screens.rpy`
-  - Note: When changing the main menu music in one file, be sure to change it in the other as well.
+- Main menu music setting in `game/options.rpy` (see `config.main_menu_music`)
+  - Note: The main menu music is defined as `config.main_menu_music = audio.t1` by default.
 
 ## Creating Your Mod
 
@@ -111,7 +169,8 @@ label start:
     
     # Replace the template story call with your own
     if persistent.playthrough == 0:
-        call chapter1 from _call_chapter1  # Your story here
+        call chapter1 from _call_chapter1  # Replace "story" with your label
+        # Note: The default template calls "story" which loads game/demo/story.rpy
 ```
 
 ### 3. Character Expressions
@@ -215,7 +274,7 @@ define config.developer = True      # Enables console and developer features
 define config.autoreload = True     # Auto-reloads on file changes
 ```
 
-- Note: When building your mod for release, set `config.developer = False` to disable these features. ALWAYS disable developer mode before building your mod to avoid including debug features in the final release (you have no idea how annoying it can get).
+**IMPORTANT**: When building your mod for release, set `config.developer = False` and `config.autoreload = False` in `game/dev.rpy` to disable these features. ALWAYS disable developer mode before building your mod to avoid including debug features in the final release.
 
 ### Console Commands
 
@@ -242,7 +301,7 @@ Use `runcode.bat` to quickly open the project in VS Code.
 
 1. **Disable Development Features**:
    - Set `config.developer = False` in `game/dev.rpy`
-   - Remove or comment out `config.autoreload = True`
+   - Set `config.autoreload = False` in `game/dev.rpy` (or comment out the line)
 
 2. **Build via Ren'Py Launcher**:
    - Select your project
@@ -261,9 +320,12 @@ The template includes optimized build settings in `game/options.rpy` under "Mod 
 
 ```python
 # Files are automatically categorized for distribution
-# Mod files go to "mod" archive
-# Excludes source files (.rpy) and other development files
+# Mod files and source code go to "mod" archive
+# Excludes vanilla assets (audio.rpa, fonts.rpa, images.rpa)
+# Note: scripts.rpa is never needed - all scripts are compiled into the mod
 ```
+
+**Important**: Your built mod will NOT include `audio.rpa`, `fonts.rpa`, or `images.rpa`. Players must add these files themselves from a fresh DDLC installation. This is required by Team Salvato's IP guidelines. Never include `scripts.rpa` - it's not needed and will cause conflicts.
 
 ## Best Practices
 

@@ -5,6 +5,7 @@
     "author": "Lawliet",
     "files": [
         "index.rpy",
-        "example.rpy"
+        "example.rpy",
+        "README.md"
     ]
 }

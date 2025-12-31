@@ -110,7 +110,9 @@ image matsuda 2y1 = im.Composite((960, 960), (0, 0), "demo/matsuda/Poses/2l.png"
 image matsuda 2z = im.Composite((960, 960), (0, 0), "demo/matsuda/Poses/2l.png", (0, 0), "demo/matsuda/Poses/1r.png", (0, 0), "demo/matsuda/Expressions/z.png")
 image matsuda 2z1 = im.Composite((960, 960), (0, 0), "demo/matsuda/Poses/2l.png", (0, 0), "demo/matsuda/Poses/1r.png", (0, 0), "demo/matsuda/Expressions/z1.png")
 
-# Character definition for Matsuda
+image matsuda 1fp = im.Composite((960, 960), (0, 0), "demo/matsuda/Poses/1l.png", (0, 0), "demo/matsuda/Poses/2r.png", (0, 0), "demo/matsuda/Expressions/Facepalm/a.png")
+
+# Character definitions for Matsuda and Morgan
 define ma = DynamicCharacter('ma_name', image='matsuda', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
 default ma_name = "Matsuda"
 define mo = DynamicCharacter('mo_name', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", pose="1a")
@@ -118,6 +120,46 @@ default mo_name = "Morgan"
 
 # Audio definitions
 define audio.gr = "demo/bgm/Gregor Samsa - Abutting, Dismantling.ogg"
+define audio.cry = "demo/bgm/cry.ogg"
+define audio.smooth = "demo/bgm/Smooth Sailing.ogg"
+define audio.rumble = "demo/bgm/rumble.ogg"
+define audio.horrible = "demo/bgm/horrible.ogg"
+
+# Sound definitions
+define audio.door_open = "demo/sfx/dooropen.ogg"
+define audio.door_close = "demo/sfx/doorclose.ogg"
+define audio.stab = "sfx/stab.ogg"
+define audio.mscare = "sfx/mscare.ogg"
+define audio.bash = "demo/sfx/bash.ogg"
 
 # Backgrounds
 image bg res_grayscale = "demo/bg/res_grayscale.png"
+image bg house_grayscale = "demo/bg/house_grayscale.png"
+image bg kitchen_grayscale = "demo/bg/kitchen_grayscale.png"
+image bg room_grayscale = "demo/bg/room_grayscale.png"
+
+# Image effects
+transform quick_flashing:
+    alpha 1.0
+    zoom 1.0
+    pause 0.05
+    alpha 0.7
+    pause 0.05
+    alpha 1.0
+    zoom 1.02
+    pause 0.05
+    alpha 0.8
+    zoom 1.0
+    pause 0.05
+    alpha 1.0
+    pause 0.05
+    alpha 0.9
+    pause 0.05
+    repeat
+
+# Misc
+# Different tracks for audio so that i can play two tracks at once
+init python:
+    renpy.music.register_channel("music2", "music", loop=True)
+    renpy.music.register_channel("music3", "music", loop=True)
+    renpy.music.register_channel("music4", "music", loop=True)

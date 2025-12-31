@@ -8,7 +8,7 @@ define config.name = "Doki Doki Modding Central Mod Template"
 define gui.show_name = False
 
 # The version of the mod
-define config.version = "0.1.0"
+define config.version = "0.9.0"
 
 # The description of the mod. Typically not used, but you can set it to whatever you want
 define gui.about = _("")
@@ -98,6 +98,8 @@ init python:
     # Usually you won't need to change this, but it's here for reference
     
     # Define the archives (packages) that will contain your mod's files
+    # NOTE FROM MODCEN: WHEN INSTALLING MODS, BE SURE TO ADD ALL FOUR OF THESE COMMENTED OUT RPA ARCHIVES TO THE GAME FOLDER.
+    # OTHERWISE THE MOD WILL NOT WORK. LIKE, AT ALL.
     # build.archive("scripts", "all")
     # build.archive("images", "all")
     # build.archive("audio", "all")
@@ -109,7 +111,7 @@ init python:
     build.classify("game/**.png", "mod")
     build.classify("game/**.webp", "mod")
     build.classify("game/**.gif", "mod")
-    build.classify("game/**.rpyc", "mod")
+    build.classify("game/**.rpy", "mod") # Swap this with rpyc to include compiled files instead.
     build.classify("game/**.txt", "mod")
     build.classify("game/**.chr", "mod")
     build.classify("game/story/**", "mod") # Custom partitioning for mod story files. Not required, but useful for larger mods
@@ -127,7 +129,7 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
-    build.classify('**.rpy', None)           # Source files aren't included, only compiled .rpyc
+    build.classify('**.rpyc', None) # Swap this with rpy to exclude compiled files instead
     build.classify('**.psd', None)
     build.classify('**.sublime-project', None)
     build.classify('**.sublime-workspace', None)
@@ -138,6 +140,12 @@ init python:
     build.classify('/game/**.rpa', None)      # Exclude all .rpa files
     build.classify('/game/firstrun', None)  # Exclude the firstrun file
     build.classify('/game/**.bak', None)
+    build.classify('**/.vscode/**', None)
+    build.classify('**/__pycache__/**', None)
+    build.classify('/**.bat', None)
+    build.classify('/traceback.txt', None)
+    build.classify('/log.txt', None)
+    build.classify('/README.md', None)
 
     # Documentation files to include
     build.documentation('*.html')

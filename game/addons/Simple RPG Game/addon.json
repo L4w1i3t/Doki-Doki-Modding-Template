@@ -1,0 +1,12 @@
+{
+  "name": "Simple RPG Game",
+  "version": "0.1.0",
+  "description": "A simple grid-based RPG mini-game with external map loading.",
+  "author": "Lawliet",
+  "files": [
+    "game.rpy",
+    "maps/level1.txt",
+    "maps/hidden.txt",
+    "assets/"
+  ]
+}

@@ -44,7 +44,6 @@ init 1 python:
         ("Ghost Menu Theme", audio.ghostmenu),
         ("Your Reality", "bgm/credits.ogg")
         # Add custom tracks here
-
     ]
     
     def toggle_bgm_override():
@@ -70,6 +69,18 @@ init 1 python:
         else:
             renpy.music.play(track, channel="music", fadeout=1.0, fadein=1.0)
 
+# Resizing the disc button
+init python:
+    disc_idle = im.Scale("addons/BGM Override/assets/disc.png", 60, 60)
+    disc_hover = im.Scale("addons/BGM Override/assets/disc_hover.png", 60, 60)
+
+# Slow clockwise spinning transform for the disc button (80x80 scaled images)
+transform disc_spin:
+    subpixel True
+    rotate 0
+    linear 12.0 rotate -360
+    repeat
+
 # BGM Override screen
 screen bgm_override():
     zorder 100
@@ -82,12 +93,14 @@ screen bgm_override():
             xoffset -10
             yoffset 10
             padding (10, 5)
+            # Semi-transparent black frame
             background "#000000cc"
             
-            textbutton "O":
-                text_size 20
-                text_color "#ffffff"
-                text_hover_color "#ffaaaa"
+            # the actual icon for the button is addons/BGM Override/assets/disc.png
+            imagebutton:
+                idle disc_idle
+                hover disc_hover
+                at disc_spin
                 action SetVariable("bgm_override_expanded", True)
     
     # Expanded panel
@@ -107,7 +120,7 @@ screen bgm_override():
                 hbox:
                     spacing 10
                     text "BGM Override" size 16 color "#ffffff"
-                    textbutton "×":
+                    textbutton "X":
                         text_size 18
                         text_color "#ffffff"
                         text_hover_color "#ff6666"

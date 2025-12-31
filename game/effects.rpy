@@ -291,8 +291,13 @@ init python:
                 self.null = Null(w, h)
             
             nr = renpy.render(self.null, width, height, st, at)
-            
-            rv = renpy.Render(w, h, opaque=False)
+
+            import sys
+            RENPY_8_PLUS = sys.version_info[0] >= 3
+            if RENPY_8_PLUS:
+                rv = renpy.Render(w, h) # opaque parameter removed in Ren'Py 8+
+            else:
+                rv = renpy.Render(w, h, opaque=False)
             
             rv.operation = renpy.display.render.IMAGEDISSOLVE
             rv.operation_alpha = 1.0

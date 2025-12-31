@@ -8,7 +8,7 @@ label bgm_override_example:
     "This is an example of using the BGM Override addon."
     
     # Show the BGM override screen
-    call show_bgm_override
+    call show_bgm_override from _call_show_bgm_override
 
     "The BGM override button should now appear in the top-right corner."
     "You can now click the button in the top-right corner to access the BGM override panel."
@@ -27,7 +27,7 @@ label bgm_override_example:
             "You can use it anytime during your playthrough."
         
         "Hide the BGM override panel":
-            call hide_bgm_override
+            call hide_bgm_override from _call_hide_bgm_override
             "The BGM override panel has been hidden."
             "You can show it again by calling 'show_bgm_override' in your script."
     
