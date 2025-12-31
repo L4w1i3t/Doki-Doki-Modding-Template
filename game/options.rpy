@@ -147,6 +147,8 @@ init python:
     build.classify('/log.txt', None)
     build.classify('/README.md', None)
     build.classify('**/.git/**', None)
+    build.classify('**/.github/**', None)
+    build.classify('/game/saves/**', None)  # Exclude save files
 
     # Documentation files to include
     build.documentation('*.html')
