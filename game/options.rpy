@@ -144,6 +144,7 @@ init python:
     build.classify('**/__pycache__/**', None)
     build.classify('/**.bat', None)
     build.classify('/traceback.txt', None)
+    build.classify('/errors.txt', None)
     build.classify('/log.txt', None)
     build.classify('/README.md', None)
     build.classify('**/.git/**', None)
