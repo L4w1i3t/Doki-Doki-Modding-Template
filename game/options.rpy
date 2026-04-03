@@ -111,7 +111,7 @@ init python:
     build.classify("game/**.png", "mod")
     build.classify("game/**.webp", "mod")
     build.classify("game/**.gif", "mod")
-    build.classify("game/**.rpy", "mod") # Swap this with rpyc to include compiled files instead.
+    build.classify("game/**.rpyc", "mod") # Swap this with rpy to include source files instead of compiled files
     build.classify("game/**.txt", "mod")
     build.classify("game/**.chr", "mod")
     build.classify("game/story/**", "mod") # Custom partitioning for mod story files. Not required, but useful for larger mods
@@ -129,7 +129,7 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
-    build.classify('**.rpyc', None) # Swap this with rpy to exclude compiled files instead
+    build.classify('**.rpy', None) # Swap this with rpyc to exclude compiled files instead
     build.classify('**.psd', None)
     build.classify('**.sublime-project', None)
     build.classify('**.sublime-workspace', None)
