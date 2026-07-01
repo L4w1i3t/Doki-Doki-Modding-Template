@@ -98,7 +98,8 @@ init python:
     # Usually you won't need to change this, but it's here for reference
     
     # Define the archives (packages) that will contain your mod's files
-    # NOTE FROM MODCEN: WHEN INSTALLING MODS, BE SURE TO ADD ALL FOUR OF THESE COMMENTED OUT RPA ARCHIVES TO THE GAME FOLDER.
+    # NOTE FROM MODCEN: WHEN INSTALLING MODS, BE SURE TO ADD ALL OF THESE COMMENTED OUT RPA ARCHIVES TO THE GAME FOLDER
+    # EXCEPT FOR scripts.rpa.
     # OTHERWISE THE MOD WILL NOT WORK. LIKE, AT ALL.
     # build.archive("scripts", "all")
     # build.archive("images", "all")
