@@ -162,5 +162,3 @@ init python:
 
 ##### Commented out as we have no use for this
 # define build.itch_project = "teamsalvato/ddlc"
-
-# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
